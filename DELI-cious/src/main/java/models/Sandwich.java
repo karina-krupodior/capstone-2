@@ -1,5 +1,5 @@
 package models;
-
+//The sandwich is the core of our business.
 public class Sandwich implements MenuItem {
     private String name;
     private double price;
