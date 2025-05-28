@@ -9,7 +9,7 @@ public class Sandwich implements MenuItem {
     private String name;
     private double price;
     private Size size;
-    private BreadType bread;
+    private BreadType breadType;
     private boolean toasted;
     private Side side;
     private List<Meat> meats;
@@ -21,13 +21,55 @@ public class Sandwich implements MenuItem {
         this.name = name;
         this.price = price;
         this.size = size;
-        this.bread = bread;
+        this.breadType = bread;
         this.toasted = toasted;
         this.side = side;
         this.meats = meatList;
         this.cheeses = cheeseList;
         this.regularToppings = regularToppingList;
-        this.sauces  = saucesList;
+        this.sauces = saucesList;
+    }
+
+    public Size getSize() {
+        return this.size;
+    }
+
+    public BreadType getBread() {
+        return this.bread;
+    }
+
+    public boolean IsToasted() {
+        return this.toasted;
+    }
+
+    public List<Meat> getMeats() {
+        return this.meats;
+
+    }
+
+    public List<Cheese> getCheeses() {
+        return this.cheeses;
+    }
+
+    public List<RegularTopping> getRegularToppings() {
+        return this.regularToppings;
+    }
+
+    public List<Sauce> getSauces() {
+        return this.sauces;
+    }
+
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "size=" + size +
+                ", breadType=" + breadType +
+                ", toasted=" + toasted +
+                ", meats=" + meats +
+                ", cheeses=" + cheeses +
+                ", toppings=" + regularToppings +
+                ", sauces=" + sauces +
+                '}';
     }
 
 
