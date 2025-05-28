@@ -80,7 +80,7 @@ public class SandwichBuilder {
             throw new IllegalStateException("Size and bread must be set");
         }
         // Creates and returns a fully-configured Sandwich object
-        return new  Sandwich("my",25);
+        return new  Sandwich("my",25,this.size,this.breadType,this.toasted);
     }
 
 
