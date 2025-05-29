@@ -2,6 +2,7 @@ package services;
 
 import models.Sandwich;
 import models.enums.*;
+import java.util.Scanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +105,68 @@ public class SandwichBuilder {
         // Creates and returns a fully-configured Sandwich object
         return new Sandwich(name, price, this.size, this.breadType, this.toasted, this.meats, this.cheeses, this.regularToppings, this.sauces);
     }
+
+    public void build(Scanner scanner) {
+        System.out.println("Choose size (SMALL, MEDIUM, LARGE):");
+        this.size = Size.valueOf(scanner.nextLine().toUpperCase());
+
+        System.out.println("Choose bread (WHITE, WHEAT, RYE, WRAP):");
+        this.breadType = BreadType.valueOf(scanner.nextLine().toUpperCase());
+
+        System.out.println("Toasted? (true/false):");
+        this.toasted = Boolean.parseBoolean(scanner.nextLine());
+
+        // === Meats ===
+        System.out.println("Add meat (e.g. TURKEY, HAM) - type 'done' to finish:");
+        while (true) {
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("done")) break;
+            try {
+                addMeat(Meat.valueOf(input.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid meat. Try again:");
+            }
+        }
+
+        // === Cheeses ===
+        System.out.println("Add cheese (e.g. CHEDDAR, SWISS) - type 'done' to finish:");
+        while (true) {
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("done")) break;
+            try {
+                addCheese(Cheese.valueOf(input.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid cheese. Try again:");
+            }
+        }
+
+        // === Regular Toppings ===
+        System.out.println("Add topping (e.g. LETTUCE, TOMATO) - type 'done' to finish:");
+        while (true) {
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("done")) break;
+            try {
+                addRegularTopping(RegularTopping.valueOf(input.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid topping. Try again:");
+            }
+        }
+
+        // === Sauces ===
+        System.out.println("Add sauce (e.g. MAYO, MUSTARD) - type 'done' to finish:");
+        while (true) {
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("done")) break;
+            try {
+                addSauce(Sauce.valueOf(input.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid sauce. Try again:");
+            }
+        }
+
+        System.out.println("✅ Sandwich ingredients collected successfully.");
+    }
+
 
 
 }

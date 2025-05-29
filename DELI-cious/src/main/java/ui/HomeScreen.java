@@ -23,8 +23,7 @@ public class HomeScreen {
             }
             switch (choice) {
                 case 1:
-                    System.out.println("OrderScreen will be shown here...");
-                    //  new OrderScreen().show()
+                      new OrderScreen().show();
                     break;
                 case 0:
                     System.out.println("Thanks for visiting DELI-cious!");

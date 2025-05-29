@@ -4,6 +4,8 @@ import models.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import services.SandwichBuilder;
+
 
 public class OrderScreen {
     private final Scanner scanner = new Scanner(System.in);
@@ -31,7 +33,12 @@ public class OrderScreen {
 
             switch (choice) {
                 case 1:
-                    Sandwich sandwich = new SandwichBuilder.build(scanner); // ты сделаешь этот класс
+
+                    SandwichBuilder builder = new SandwichBuilder();
+                    builder.build(scanner);
+                    Sandwich sandwich = builder.createSandwich();
+                    System.out.println(sandwich);
+
                     orderItems.add(sandwich);
                     System.out.println("Sandwich added!");
                     break;
