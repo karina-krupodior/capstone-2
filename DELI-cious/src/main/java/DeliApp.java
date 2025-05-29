@@ -1,21 +1,28 @@
-import models.Sandwich;
-import models.enums.*;
-import services.SandwichBuilder;
+import ui.HomeScreen;
+import java.util.Scanner;
 
 public class DeliApp {
-
     public static void main(String[] args) {
-        SandwichBuilder sandwichBuilder = new SandwichBuilder();
-        sandwichBuilder.setSize(Size.MEDIUM);
-        sandwichBuilder.setBreadType(BreadType.WHEAT);
-        sandwichBuilder.setToasted(true);
-        sandwichBuilder.addMeat(Meat.HAM);
-        sandwichBuilder.addMeat(Meat.BACON);
-        sandwichBuilder.addCheese(Cheese.SWISS);
-        sandwichBuilder.addRegularTopping(RegularTopping.ONIONS);
-        sandwichBuilder.addSauce(Sauce.MAYO);
-        Sandwich createSandwich = sandwichBuilder.createSandwich();
-        System.out.println("createSandwich:" + createSandwich);
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
+        while (running) {
+            int choice = HomeScreen.show(scanner);
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Starting new order...");
+                    // вызов OrderScreen будет здесь
+                    break;
+                case 0:
+                    System.out.println("Goodbye!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Please choose a valid option.");
+            }
+        }
+
+        scanner.close();
     }
 }
