@@ -36,7 +36,7 @@ public class Sandwich implements MenuItem {
         return this.breadType;
     }
 
-    public boolean IsToasted() {
+    public boolean isToasted() {
         return this.toasted;
     }
 
@@ -59,9 +59,9 @@ public class Sandwich implements MenuItem {
 
     @Override
     public String toString() {
+
         return "Sandwich{" +
-                "price" + price +
-                "size=" + size +
+                "price=$" + price + ", size=" + size +
                 ", breadType=" + breadType +
                 ", toasted=" + toasted +
                 ", meats=" + meats +
@@ -69,9 +69,9 @@ public class Sandwich implements MenuItem {
                 ", toppings=" + regularToppings +
                 ", sauces=" + sauces +
                 '}';
+
+
     }
-
-
     @Override
     public String getName() {
         return this.name;

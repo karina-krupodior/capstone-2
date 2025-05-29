@@ -87,7 +87,7 @@ public class SandwichBuilder {
             total = total + cheeses.get(0).getPrice(this.size);
             int extraCheese = cheeses.size() - 1;
             if (extraCheese > 0) {
-                total = Meat.EXTRA_MEAT.getPrice(size) * extraMeats;
+                total = Cheese.EXTRA_CHEESE.getPrice(size) * extraCheese;
             }
         }
         return total;

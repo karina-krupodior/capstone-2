@@ -4,7 +4,7 @@ public class Chips implements MenuItem {
     private String name;
     private  double price;
 
-    Chips(String name, double price) {
+   public Chips(String name, double price) {
         this.name = name;
         this.price = price;
     }
