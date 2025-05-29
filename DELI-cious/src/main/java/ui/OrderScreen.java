@@ -4,6 +4,8 @@ import models.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import services.DrinkService;
 import services.SandwichBuilder;
 
 
@@ -43,20 +45,20 @@ public class OrderScreen {
                     System.out.println("Sandwich added!");
                     break;
                 case 2:
-                    System.out.print("Enter drink name: ");
-                    String drinkName = scanner.nextLine();
-                    System.out.print("Enter drink price: ");
-                    double drinkPrice = Double.parseDouble(scanner.nextLine());
-                    orderItems.add(new Drink(drinkName, drinkPrice));
-                    System.out.println("Drink added!");
+                    DrinkService drinkService = new DrinkService();
+                    Drink selectedDrink = drinkService.chooseDrink(scanner);
+
+                    if (selectedDrink != null) {
+                        System.out.println("You selected: " + selectedDrink);
+                    }
                     break;
                 case 3:
-                    System.out.print("Enter chip name: ");
-                    String chipName = scanner.nextLine();
-                    System.out.print("Enter chip price: ");
-                    double chipPrice = Double.parseDouble(scanner.nextLine());
-                    orderItems.add(new Chips(chipName, chipPrice));
-                    System.out.println("Chips added!");
+//                    ChipsService chipsService = new ChipsService();
+//                    Chips selectedChips = chipsService.chooseChips(scanner);
+//
+//                    if (selectedChips != null) {
+//                        System.out.println("You selected: " + selectedChips);
+//                    }
                     break;
                 case 4:
                     checkout();

@@ -1,26 +1,39 @@
 package models;
 
-public class Drink implements MenuItem {
+import models.enums.Size;
+
+public class Drink {
+    private Size size;
     private String name;
-    private double price;
 
-    public Drink(String name, double price) {
+    public Drink(Size size, String name) {
+        this.size = size;
         this.name = name;
-        this.price = price;
-
     }
 
-    @Override
+    public Size getSize() {
+        return size;
+    }
+
     public String getName() {
-        return this.name;
+        return name;
+    }
 
+    public double getPrice() {
+        switch (size) {
+            case SMALL:
+                return 2.00;
+            case MEDIUM:
+                return 2.50;
+            case LARGE:
+                return 3.00;
+            default:
+                return 0.00;
+        }
     }
 
     @Override
-    public double getPrice() {
-        return this.price;
-
+    public String toString() {
+        return name + " (" + size + ") - $" + getPrice();
     }
-
-
 }

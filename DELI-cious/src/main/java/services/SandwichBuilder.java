@@ -27,14 +27,12 @@ public class SandwichBuilder {
     public void setSize(Size size) {
         this.size = size;
         // Example: setSize(Size.MEDIUM);
-
     }
 
     // Sets the type of bread
     public void setBreadType(BreadType breadType) {
         this.breadType = breadType;
         // Example: setBreadType(BreadType.WHEAT);
-
     }
 
     // Sets whether the sandwich is toasted

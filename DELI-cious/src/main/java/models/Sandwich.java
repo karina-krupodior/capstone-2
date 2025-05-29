@@ -69,8 +69,6 @@ public class Sandwich implements MenuItem {
                 ", toppings=" + regularToppings +
                 ", sauces=" + sauces +
                 '}';
-
-
     }
     @Override
     public String getName() {
