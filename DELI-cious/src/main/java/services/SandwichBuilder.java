@@ -14,7 +14,6 @@ public class SandwichBuilder {
     // Should the sandwich be toasted?
     private boolean toasted;
     // Lists to store selected ingredients
-    private Side side;
 
     private List<Meat> meats = new ArrayList<>();   // Example: [TURKEY, HAM]
 
@@ -44,10 +43,6 @@ public class SandwichBuilder {
 
     }
 
-    public void setSide ( Side side) {
-        this.side = side;
-    }
-
     // Adds a meat to the sandwich
     public void addMeat(Meat meat) {
         this.meats.add(meat);
@@ -61,26 +56,53 @@ public class SandwichBuilder {
         // Example: addCheese(Cheese.CHEDDAR)
 
     }
+
     // Adds a regular topping to the sandwich
     public void addRegularTopping(RegularTopping regularTopping) {
         this.regularToppings.add(regularTopping);
 
         // Example: addTopping(RegularTopping.LETTUCE);
     }
+
     // Adds a sauce to the sandwich
-    public  void addSauce (Sauce sauce) {
+    public void addSauce(Sauce sauce) {
         sauces.add(sauce);
         // Example: addSauce(Sauce.MAYO);
 
     }
 
+    public double calculatePrice() {
+        double total = 0;
+        total = total + this.size.getBasePrice();
+
+        if (!this.meats.isEmpty()) {
+            total = total + meats.get(0).getPrice(this.size);
+        }
+        int extraMeats = meats.size() - 1;
+        if (extraMeats > 0) {
+            total += Meat.EXTRA_MEAT.getPrice(size) * extraMeats;
+        }
+
+        if (!this.cheeses.isEmpty()) {
+            total = total + cheeses.get(0).getPrice(this.size);
+            int extraCheese = cheeses.size() - 1;
+            if (extraCheese > 0) {
+                total = Meat.EXTRA_MEAT.getPrice(size) * extraMeats;
+            }
+        }
+        return total;
+
+    }
+
     // Builds the final Sandwich object using all selected options
-    public Sandwich build () {
+    public Sandwich createSandwich() {
         if (size == null || breadType == null) {
             throw new IllegalStateException("Size and bread must be set");
         }
+        String name = "Custom Sandwich";
+        double price = calculatePrice();
         // Creates and returns a fully-configured Sandwich object
-        return new  Sandwich("my",25,this.size,this.breadType,this.toasted);
+        return new Sandwich(name, price, this.size, this.breadType, this.toasted, this.meats, this.cheeses, this.regularToppings, this.sauces);
     }
 
 

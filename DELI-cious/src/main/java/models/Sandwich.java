@@ -11,19 +11,17 @@ public class Sandwich implements MenuItem {
     private Size size;
     private BreadType breadType;
     private boolean toasted;
-    private Side side;
     private List<Meat> meats;
     private List<Cheese> cheeses;
     private List<RegularTopping> regularToppings;
     private List<Sauce> sauces;
 
-    public Sandwich(String name, double price, Size size, BreadType bread, boolean toasted, Side side, List<Meat> meatList, List<Cheese> cheeseList, List<RegularTopping> regularToppingList, List<Sauce> saucesList) {
+    public Sandwich(String name, double price, Size size, BreadType bread, boolean toasted, List<Meat> meatList, List<Cheese> cheeseList, List<RegularTopping> regularToppingList, List<Sauce> saucesList) {
         this.name = name;
         this.price = price;
         this.size = size;
         this.breadType = bread;
         this.toasted = toasted;
-        this.side = side;
         this.meats = meatList;
         this.cheeses = cheeseList;
         this.regularToppings = regularToppingList;
@@ -35,7 +33,7 @@ public class Sandwich implements MenuItem {
     }
 
     public BreadType getBread() {
-        return this.bread;
+        return this.breadType;
     }
 
     public boolean IsToasted() {
@@ -62,6 +60,7 @@ public class Sandwich implements MenuItem {
     @Override
     public String toString() {
         return "Sandwich{" +
+                "price" + price +
                 "size=" + size +
                 ", breadType=" + breadType +
                 ", toasted=" + toasted +
