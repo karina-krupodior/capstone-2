@@ -125,7 +125,6 @@ public class SandwichBuilder {
         return choices;
     }
 
-    // Универсальный метод для запроса boolean с повтором
     private boolean promptBoolean(Scanner scanner, String prompt) {
         while (true) {
             System.out.println(prompt);
@@ -136,7 +135,6 @@ public class SandwichBuilder {
         }
     }
 
-    // Получить строку с возможными значениями enum через запятую
     private <T extends Enum<T>> String enumOptions(Class<T> enumClass) {
         T[] constants = enumClass.getEnumConstants();
         StringBuilder sb = new StringBuilder();
