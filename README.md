@@ -68,7 +68,7 @@ private <T extends Enum<T>> T promptEnum(Scanner scanner, String prompt, Class<T
 
 ## 🧱 Class Diagram (Design)
 
-![Class Diagram](DELI-cious/src/images/class-diagram.png)
+![Class Diagram](DELI-cious/src/images/class-diagram.jpg)
 
 ---
 
