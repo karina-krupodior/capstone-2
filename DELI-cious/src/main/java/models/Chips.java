@@ -1,26 +1,23 @@
 package models;
 
-public class Chips implements MenuItem {
-    private String name;
-    private double price;
+public class Chips {
+    private final String flavor;
+    private final double price = 1.50;
 
-    public Chips(String name, double price) {
-        this.name = name;
-        this.price = price;
+    public Chips(String flavor) {
+        this.flavor = flavor;
     }
 
-    @Override
-    public String getName() {
-        return name;
+    public String getFlavor() {
+        return flavor;
     }
 
-    @Override
     public double getPrice() {
         return price;
     }
 
     @Override
     public String toString() {
-        return name + " ($" + price + ")";
+        return flavor + " Chips - $" + price;
     }
 }

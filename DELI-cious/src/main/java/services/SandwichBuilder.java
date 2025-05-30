@@ -2,169 +2,148 @@ package services;
 
 import models.Sandwich;
 import models.enums.*;
-import java.util.Scanner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class SandwichBuilder {
-    //  SMALL(4), MEDIUM(8), LARGE(12);
     private Size size;
-    //  BreadType WHITE("White"), WHEAT("Wheat"), RYE("Rye"), WRAP("Wrap");
     private BreadType breadType;
-    // Should the sandwich be toasted?
     private boolean toasted;
-    // Lists to store selected ingredients
+    private List<Meat> meats = new ArrayList<>();
+    private List<Cheese> cheeses = new ArrayList<>();
+    private List<RegularTopping> regularToppings = new ArrayList<>();
+    private List<Sauce> sauces = new ArrayList<>();
 
-    private List<Meat> meats = new ArrayList<>();   // Example: [TURKEY, HAM]
-
-    private List<Cheese> cheeses = new ArrayList<>();  // Example: [CHEDDAR]
-    private List<RegularTopping> regularToppings = new ArrayList<>(); // Example: [LETTUCE, TOMATO]
-    private List<Sauce> sauces = new ArrayList<>(); // Example: [MAYO, MUSTARD]
-
-
-    // Sets the sandwich size
-    public void setSize(Size size) {
-        this.size = size;
-        // Example: setSize(Size.MEDIUM);
-    }
-
-    // Sets the type of bread
-    public void setBreadType(BreadType breadType) {
-        this.breadType = breadType;
-        // Example: setBreadType(BreadType.WHEAT);
-    }
-
-    // Sets whether the sandwich is toasted
-    public void setToasted(boolean toasted) {
-        this.toasted = toasted;
-        // Example: setToasted(true);
-
-    }
-
-    // Adds a meat to the sandwich
-    public void addMeat(Meat meat) {
-        this.meats.add(meat);
-        // Example: addMeat(Meat.TURKEY);
-
-    }
-
-    // Adds a cheese to the sandwich
-    public void addCheese(Cheese cheese) {
-        this.cheeses.add(cheese);
-        // Example: addCheese(Cheese.CHEDDAR)
-
-    }
-
-    // Adds a regular topping to the sandwich
-    public void addRegularTopping(RegularTopping regularTopping) {
-        this.regularToppings.add(regularTopping);
-
-        // Example: addTopping(RegularTopping.LETTUCE);
-    }
-
-    // Adds a sauce to the sandwich
-    public void addSauce(Sauce sauce) {
-        sauces.add(sauce);
-        // Example: addSauce(Sauce.MAYO);
-
-    }
+    public void setSize(Size size) { this.size = size; }
+    public void setBreadType(BreadType breadType) { this.breadType = breadType; }
+    public void setToasted(boolean toasted) { this.toasted = toasted; }
+    public void addMeat(Meat meat) { this.meats.add(meat); }
+    public void addCheese(Cheese cheese) { this.cheeses.add(cheese); }
+    public void addRegularTopping(RegularTopping topping) { this.regularToppings.add(topping); }
+    public void addSauce(Sauce sauce) { this.sauces.add(sauce); }
 
     public double calculatePrice() {
-        double total = 0;
-        total = total + this.size.getBasePrice();
-
-        if (!this.meats.isEmpty()) {
-            total = total + meats.get(0).getPrice(this.size);
+        double total = size.getBasePrice();
+        for (Meat meat : meats) {
+            total += meat.getPrice(size);
         }
-        int extraMeats = meats.size() - 1;
-        if (extraMeats > 0) {
-            total += Meat.EXTRA_MEAT.getPrice(size) * extraMeats;
-        }
-
-        if (!this.cheeses.isEmpty()) {
-            total = total + cheeses.get(0).getPrice(this.size);
+        if (!cheeses.isEmpty()) {
+            total += cheeses.get(0).getPrice(size);
             int extraCheese = cheeses.size() - 1;
             if (extraCheese > 0) {
-                total = Cheese.EXTRA_CHEESE.getPrice(size) * extraCheese;
+                total += Cheese.EXTRA_CHEESE.getPrice(size) * extraCheese;
             }
         }
         return total;
-
     }
 
-    // Builds the final Sandwich object using all selected options
     public Sandwich createSandwich() {
         if (size == null || breadType == null) {
             throw new IllegalStateException("Size and bread must be set");
         }
         String name = "Custom Sandwich";
         double price = calculatePrice();
-        // Creates and returns a fully-configured Sandwich object
-        return new Sandwich(name, price, this.size, this.breadType, this.toasted, this.meats, this.cheeses, this.regularToppings, this.sauces);
+        return new Sandwich(name, price, size, breadType, toasted, meats, cheeses, regularToppings, sauces);
     }
 
     public void build(Scanner scanner) {
-        System.out.println("Choose size (SMALL, MEDIUM, LARGE):");
-        this.size = Size.valueOf(scanner.nextLine().toUpperCase());
+        System.out.println("Let's build your delicious sandwich step by step!\n");
 
-        System.out.println("Choose bread (WHITE, WHEAT, RYE, WRAP):");
-        this.breadType = BreadType.valueOf(scanner.nextLine().toUpperCase());
+        // === Size ===
+        size = promptEnum(scanner, "Choose size", Size.class);
 
-        System.out.println("Toasted? (true/false):");
-        this.toasted = Boolean.parseBoolean(scanner.nextLine());
+        // === Bread ===
+        breadType = promptEnum(scanner, "Choose bread", BreadType.class);
+
+        // === Toasted ===
+        toasted = promptBoolean(scanner, "Do you want your sandwich toasted? (true/false)");
 
         // === Meats ===
-        System.out.println("Add meat (e.g. TURKEY, HAM) - type 'done' to finish:");
-        while (true) {
-            String input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("done")) break;
-            try {
-                addMeat(Meat.valueOf(input.toUpperCase()));
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid meat. Try again:");
-            }
-        }
+        meats = promptMultipleChoices(scanner, "Add meats", Meat.class);
 
         // === Cheeses ===
-        System.out.println("Add cheese (e.g. CHEDDAR, SWISS) - type 'done' to finish:");
-        while (true) {
-            String input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("done")) break;
-            try {
-                addCheese(Cheese.valueOf(input.toUpperCase()));
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid cheese. Try again:");
-            }
-        }
+        cheeses = promptMultipleChoices(scanner, "Add cheeses", Cheese.class);
 
-        // === Regular Toppings ===
-        System.out.println("Add topping (e.g. LETTUCE, TOMATO) - type 'done' to finish:");
-        while (true) {
-            String input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("done")) break;
-            try {
-                addRegularTopping(RegularTopping.valueOf(input.toUpperCase()));
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid topping. Try again:");
-            }
-        }
+        // === Toppings ===
+        regularToppings = promptMultipleChoices(scanner, "Add toppings", RegularTopping.class);
 
         // === Sauces ===
-        System.out.println("Add sauce (e.g. MAYO, MUSTARD) - type 'done' to finish:");
-        while (true) {
-            String input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("done")) break;
-            try {
-                addSauce(Sauce.valueOf(input.toUpperCase()));
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid sauce. Try again:");
-            }
-        }
+        sauces = promptMultipleChoices(scanner, "Add sauces", Sauce.class);
 
-        System.out.println("✅ Sandwich ingredients collected successfully.");
+        System.out.println("\n✅ Sandwich ingredients collected successfully!");
+        System.out.println("Here is your sandwich summary:");
+        System.out.println(createSandwich());
     }
 
+    private <T extends Enum<T>> T promptEnum(Scanner scanner, String prompt, Class<T> enumClass) {
+        T selection = null;
+        String options = enumOptions(enumClass);
+        while (selection == null) {
+            System.out.println(prompt + " (" + options + "):");
+            String input = scanner.nextLine().trim().toUpperCase();
+            if (input.isEmpty()) {
+                System.out.println("⚠️ Input cannot be empty. Please try again.");
+                continue;
+            }
+            try {
+                selection = Enum.valueOf(enumClass, input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("❌ Invalid input. Please choose one of: " + options);
+            }
+        }
+        return selection;
+    }
 
+    private <T extends Enum<T>> List<T> promptMultipleChoices(Scanner scanner, String prompt, Class<T> enumClass) {
+        List<T> choices = new ArrayList<>();
+        String options = enumOptions(enumClass);
+        System.out.println(prompt + " (type 'done' to finish). Available: " + options);
+        while (true) {
+            System.out.print("> ");
+            String input = scanner.nextLine().trim();
+            if (input.isEmpty()) {
+                System.out.println("⚠️ Empty input ignored. Please enter a choice or 'done'.");
+                continue;
+            }
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
+            try {
+                T choice = Enum.valueOf(enumClass, input.toUpperCase());
+                if (choices.contains(choice)) {
+                    System.out.println("⚠️ You already added " + choice + ". Try something else or 'done'.");
+                } else {
+                    choices.add(choice);
+                    System.out.println("Added: " + choice);
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("❌ Invalid choice. Please pick from: " + options);
+            }
+        }
+        return choices;
+    }
 
+    // Универсальный метод для запроса boolean с повтором
+    private boolean promptBoolean(Scanner scanner, String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            String input = scanner.nextLine().trim().toLowerCase();
+            if (input.equals("true")) return true;
+            if (input.equals("false")) return false;
+            System.out.println("❌ Please type 'true' or 'false'.");
+        }
+    }
+
+    // Получить строку с возможными значениями enum через запятую
+    private <T extends Enum<T>> String enumOptions(Class<T> enumClass) {
+        T[] constants = enumClass.getEnumConstants();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < constants.length; i++) {
+            sb.append(constants[i].name());
+            if (i < constants.length - 1) sb.append(", ");
+        }
+        return sb.toString();
+    }
 }

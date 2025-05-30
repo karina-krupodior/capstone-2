@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import services.ChipsService;
 import services.DrinkService;
 import services.SandwichBuilder;
 
@@ -53,12 +54,12 @@ public class OrderScreen {
                     }
                     break;
                 case 3:
-//                    ChipsService chipsService = new ChipsService();
-//                    Chips selectedChips = chipsService.chooseChips(scanner);
-//
-//                    if (selectedChips != null) {
-//                        System.out.println("You selected: " + selectedChips);
-//                    }
+                    ChipsService chipsService = new ChipsService();
+                    Chips selectedChips = chipsService.chooseChips(scanner);
+
+                    if (selectedChips != null) {
+                        System.out.println("You selected: " + selectedChips);
+                    }
                     break;
                 case 4:
                     checkout();
