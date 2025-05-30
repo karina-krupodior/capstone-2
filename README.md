@@ -20,10 +20,10 @@ The user can:
 ## 🖥️ Application Screenshots
 
 ### 🏠 Home Screen
-![Home Screen](images/home-screen.png)
+![Home Screen](DELI-cious/src/images/home-screen.png)
 
 ### 🥪 Sandwich Builder in Action
-![Sandwich Builder](images/sandwich-builder.png)
+![Sandwich Builder](..images/sandwich-builder.png)
 
 ### 📋 Checkout Screen
 ![Checkout Screen](images/checkout-screen.png)
