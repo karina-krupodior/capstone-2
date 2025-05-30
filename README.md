@@ -2,18 +2,37 @@
 
 ## 📜 Project Description
 
-**DELI-cious** is a Java-based Command Line Interface (CLI) point-of-sale (POS) application for a customizable sandwich shop.
+**DELI-cious** is a Java command-line application for placing sandwich shop orders.
 
-The user can:
+---
 
-- Create custom sandwiches by choosing size, bread, toppings, sauces, and toast preference.
-- Add multiple sandwiches, drinks, and chips to the same order.
-- View detailed order summaries.
-- Generate timestamped receipts.
-- Navigate through an intuitive menu-driven interface.
+### 💡 **What the user can do:**
 
-- This project showcases OOP principles such as encapsulation, abstraction, inheritance, and polymorphism,
-- and is modularly structured using packages like `models`, `services`, and `enums`.
+* Build a custom sandwich by choosing size, bread, toppings, sauces, and toast options
+* Add multiple sandwiches, drinks, and chips to one order
+* View a full summary of the order
+* Get a receipt with the current time
+* Easily navigate using a menu-driven interface
+
+---
+
+### 🛠️ **What this project demonstrates:**
+
+**Object-Oriented Programming (OOP) principles such as:**
+
+* **Encapsulation** – keeping data and logic inside classes
+* **Abstraction** – hiding complex implementation and showing only important features (e.g., using interfaces)
+* **Polymorphism** – treating different types of items (sandwiches, drinks, chips) in the same way through a shared interface
+* **Interfaces** and **enums** – for structure, reusability, and readability
+* **Generics** – for reusable methods that work with different enum types (like selecting size or toppings)
+
+---
+
+The code is **modularly structured** using packages like:
+
+* `models` – for data classes like Sandwich, Drink, etc.
+* `services` – for logic like order handling and user input
+* `enums` – for types like Size, Cheese, Bread, etc.
 
 ---
 
@@ -23,7 +42,7 @@ The user can:
 ![Home Screen](DELI-cious/src/images/home-screen.png)
 
 ### 🥪 Sandwich Builder in Action
-![Sandwich Builder](DELI-cious/src/images/checkout-screen.png)
+![Sandwich Builder](DELI-cious/src/images/sandwich-builder.png)
 
 ### 📋 Checkout Screen
 ![Checkout Screen](DELI-cious/src/images/checkout-screen.png)
