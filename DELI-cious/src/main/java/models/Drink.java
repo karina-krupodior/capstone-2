@@ -2,7 +2,7 @@ package models;
 
 import models.enums.Size;
 
-public class Drink {
+public class Drink implements MenuItem{
     private Size size;
     private String name;
 
@@ -14,11 +14,11 @@ public class Drink {
     public Size getSize() {
         return size;
     }
-
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public double getPrice() {
         switch (size) {
             case SMALL:
