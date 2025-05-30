@@ -23,10 +23,10 @@ The user can:
 ![Home Screen](DELI-cious/src/images/home-screen.png)
 
 ### 🥪 Sandwich Builder in Action
-![Sandwich Builder](..images/sandwich-builder.png)
+![Sandwich Builder](DELI-cious/src/images/checkout-screen.png)
 
 ### 📋 Checkout Screen
-![Checkout Screen](images/checkout-screen.png)
+![Checkout Screen](DELI-cious/src/images/checkout-screen.png)
 
 ---
 
@@ -67,8 +67,6 @@ private <T extends Enum<T>> T promptEnum(Scanner scanner, String prompt, Class<T
 ---
 
 ## 🧱 Class Diagram (Design)
-
-> Save your diagram as `images/class-diagram.png` or export from tools like Lucidchart, UMLet, or IntelliJ and reference here:
 
 ![Class Diagram](images/class-diagram.png)
 
