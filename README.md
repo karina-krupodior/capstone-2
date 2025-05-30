@@ -32,8 +32,8 @@ The user can:
 
 ## 💡 Interesting Code: SandwichBuilder.java
 
-One of the most interactive and dynamic parts of the application is the `SandwichBuilder` class,
-- which walks the user through building their own sandwich using reflection and generic programming to streamline enum input.
+* One of the most interactive and dynamic parts of the application is the `SandwichBuilder` class,
+* which walks the user through building their own sandwich using reflection and generic programming to streamline enum input.
 
 ### 🔍 Code Snippet
 
@@ -92,24 +92,10 @@ private <T extends Enum<T>> T promptEnum(Scanner scanner, String prompt, Class<T
 
 2. Open the project in your IDE.
 
-3. Run the `Main.java` file in the CLI.
+3. Run the `DeliApp.java` file in the CLI.
 
 ---
 
-## 🗃️ Project Structure
-
-```
-src/
-├── models/
-│   └── Sandwich.java
-├── models/enums/
-│   └── Size.java, BreadType.java, Meat.java, Cheese.java, etc.
-├── services/
-│   └── SandwichBuilder.java, OrderManager.java, ReceiptWriter.java
-├── Main.java
-```
-
----
 
 ## 📌 Features
 
