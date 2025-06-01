@@ -49,7 +49,7 @@ public class OrderScreen {
                     DrinkService drinkService = new DrinkService();
                     Drink selectedDrink = drinkService.chooseDrink(scanner);
                     if (selectedDrink != null) {
-                        orderItems.add((MenuItem) selectedDrink); // ⬅️ Добавить в заказ
+                        orderItems.add((MenuItem) selectedDrink);
                         System.out.println("You selected: " + selectedDrink);
                     }
                     break;
@@ -58,7 +58,7 @@ public class OrderScreen {
                     ChipsService chipsService = new ChipsService();
                     Chips selectedChips = chipsService.chooseChips(scanner);
                     if (selectedChips != null) {
-                        orderItems.add((MenuItem) selectedChips); // ⬅️ Добавить в заказ
+                        orderItems.add((MenuItem) selectedChips)
                         System.out.println("You selected: " + selectedChips);
                     }
                     break;
