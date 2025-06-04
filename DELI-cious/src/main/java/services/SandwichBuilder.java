@@ -11,7 +11,7 @@ public class SandwichBuilder {
     private Size size;
     private BreadType breadType;
     private boolean toasted;
-    private List<Meat> meats = new ArrayList<>(); []
+    private List<Meat> meats = new ArrayList<>();
     private List<Cheese> cheeses = new ArrayList<>();
     private List<RegularTopping> regularToppings = new ArrayList<>();
     private List<Sauce> sauces = new ArrayList<>();
@@ -46,10 +46,12 @@ public class SandwichBuilder {
             } else {
                 total += Cheese.EXTRA_CHEESE.getPrice(size);
             }
+
         }
 
-        return total;
+
     }
+        return total;
         }
 
 
@@ -65,25 +67,18 @@ public class SandwichBuilder {
     public void build(Scanner scanner) {
         System.out.println("Let's build your delicious sandwich step by step!\n");
 
-        // === Size ===
         size = promptEnum(scanner, "Choose size", Size.class);
 
-        // === Bread ===
         breadType = promptEnum(scanner, "Choose bread", BreadType.class);
 
-        // === Toasted ===
         toasted = promptBoolean(scanner, "Do you want your sandwich toasted? (true/false)");
 
-        // === Meats ===
         meats = promptMultipleChoices(scanner, "Add meats", Meat.class);
 
-        // === Cheeses ===
         cheeses = promptMultipleChoices(scanner, "Add cheeses", Cheese.class);
 
-        // === Toppings ===
         regularToppings = promptMultipleChoices(scanner, "Add toppings", RegularTopping.class);
 
-        // === Sauces ===
         sauces = promptMultipleChoices(scanner, "Add sauces", Sauce.class);
 
         System.out.println("\n✅ Sandwich ingredients collected successfully!");

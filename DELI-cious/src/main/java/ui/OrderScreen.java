@@ -58,7 +58,7 @@ public class OrderScreen {
                     ChipsService chipsService = new ChipsService();
                     Chips selectedChips = chipsService.chooseChips(scanner);
                     if (selectedChips != null) {
-                        orderItems.add((MenuItem) selectedChips)
+                        orderItems.add((MenuItem) selectedChips);
                         System.out.println("You selected: " + selectedChips);
                     }
                     break;
